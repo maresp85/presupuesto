@@ -1,0 +1,1 @@
+web: gunicorn presupuesto.wsgi --log-file -

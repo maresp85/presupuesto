@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Movimiento</title>
+      <!-- Compiled and minified CSS -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="row">
+        <div class="col s12 m12">
+          <div class="card deep-purple darken-3">
+             <div class="card-content white-text">
+              <span class="card-title">Nuevo Movimiento</span>
+             </div>
+            </div>
+          </div>
+      </div>
+
+      <div class="row">
+          <form method="post" action="{% url 'movimiento' %}">
+            {% csrf_token %}
+            <div class="input-field col s12">
+              <select name="categoria" required>
+                <option value="" disabled selected>Seleccione una opción</option>
+                {% for x in form.categoria %}
+                  {{ x }}
+                {% endfor %}
+              </select>
+              <label>Categorías</label>
+            </div>
+            <div class="input-field col s12">
+              <select name="tipo" required>
+                <option value="" disabled selected>Seleccione una opción</option>
+                {% for x,y in form.fields.tipo.choices %}
+                  <option value="{{ x }}">{{ y }}</option>
+                {% endfor %}
+              </select>
+              <label>Tipo de Movimiento</label>
+            </div>
+            <div class="input-field col s12">
+               <input placeholder="Monto" name="monto" type="number" required>
+               <label for="monto">Monto</label>
+            </div>
+            <div class="input-field col s12">
+               <input placeholder="Fecha" name="fecha" type="date" required>
+               <label for="monto">Fecha</label>
+            </div>
+            <div class="input-field col s12">
+              <button class="deep-purple darken-3 btn">Guardar</button>
+            </div>
+          </form>
+      </div>
+
+    </div>
+
+  </body>
+
+   <!-- JQuery -->
+   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+   <!-- Compiled and minified JavaScript -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+   <script>
+     $(document).ready(function(){
+       $('select').formSelect();
+     });
+   </script>
+
+</html>
